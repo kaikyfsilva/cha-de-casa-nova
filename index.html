@@ -326,18 +326,6 @@
   <span class="admin-link" onclick="abrirAdmin()">⚙ área restrita</span>
 </footer>
 
-<!-- MODAL RESERVA -->
-<div class="modal-overlay" id="modal" onclick="if(event.target===this)fecharModal()">
-  <div class="modal-box">
-    <h3>Reservar presente?</h3>
-    <p>Ao confirmar, este item ficará marcado como reservado para todos os convidados.</p>
-    <div class="presente-destaque" id="modal-nome-presente"></div>
-    <div class="modal-btns">
-      <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
-      <button class="btn-reservar" id="btn-reservar-modal" onclick="confirmarItem()">Reservar</button>
-    </div>
-  </div>
-</div>
 
 <!-- MODAL ADMIN -->
 <div class="modal-overlay" id="modal-admin" onclick="if(event.target===this)fecharAdmin()">
@@ -382,7 +370,7 @@ const PRESENTES = {
 };
 
 let reservasLocal = {};
-let itemSelecionado = null;
+let itemSelecionado = [];
 
 // ── Mostra banner se não configurado ─────────────────────
 if (!configurado) {
@@ -507,13 +495,20 @@ inicializar();
 // ── Modal reserva ─────────────────────────────────────────
 function clicarPresente(el) {
   if (el.classList.contains('indisponivel')) return;
-  itemSelecionado = el;
-  document.getElementById('modal-nome-presente').textContent = el.dataset.nome;
-  document.getElementById('modal').classList.add('aberto');
-}
-function fecharModal() {
-  document.getElementById('modal').classList.remove('aberto');
-  itemSelecionado = null;
+
+  const id = el.dataset.id;
+  const radio = el.querySelector('.presente-radio');
+
+  // desmarca se já estiver selecionado
+  if (itensSelecionados.includes(id)) {
+    itensSelecionados = itensSelecionados.filter(item => item !== id);
+    radio.classList.remove('marcado');
+    return;
+  }
+
+  // marca
+  itensSelecionados.push(id);
+  radio.classList.add('marcado');
 }
 
 async function confirmarItem() {
@@ -539,35 +534,74 @@ async function confirmarItem() {
 async function confirmarReserva() {
   const nome = document.getElementById('nome-convidado').value.trim();
   const outro = document.getElementById('presente-outro').value.trim();
-  const temReserva = Object.keys(reservasLocal).length > 0 || outro;
 
   if (!nome) {
     const inp = document.getElementById('nome-convidado');
     inp.style.borderColor = '#E24B4A';
     inp.focus();
-    setTimeout(() => { inp.style.borderColor = ''; }, 2000);
+
+    setTimeout(() => {
+      inp.style.borderColor = '';
+    }, 2000);
+
     return;
   }
-  if (!temReserva) {
+
+  if (itensSelecionados.length === 0 && !outro) {
     alert('Selecione pelo menos um presente ou preencha o campo "Outros"!');
     return;
   }
 
   const btn = document.getElementById('btn-confirmar');
+
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Confirmando...';
 
-  if (outro) {
-    const id = 'outro_' + Date.now();
-    try {
-      await reservarItem(id, nome, outro);
-      reservasLocal[id] = { nome, outro };
-    } catch(e) { console.warn('Erro salvando item "outros":', e); }
-  }
+  try {
 
-  btn.textContent = '✓ Confirmado';
-  document.getElementById('msg-sucesso').style.display = 'block';
-  document.getElementById('msg-sucesso').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // salva itens selecionados
+    for (const id of itensSelecionados) {
+      await reservarItem(id, nome, null);
+
+      reservasLocal[id] = { nome };
+    }
+
+    // salva campo outros
+    if (outro) {
+      const idOutro = 'outro_' + Date.now();
+
+      await reservarItem(idOutro, nome, outro);
+
+      reservasLocal[idOutro] = {
+        nome,
+        outro
+      };
+    }
+
+    renderizarEstado();
+
+    // limpa seleção visual
+    itensSelecionados = [];
+
+    document.querySelectorAll('.presente-radio').forEach(radio => {
+      radio.classList.remove('marcado');
+    });
+
+    btn.textContent = '✓ Confirmado';
+
+    document.getElementById('msg-sucesso').style.display = 'block';
+
+    document.getElementById('msg-sucesso').scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+  } catch(e) {
+    console.error(e);
+    alert('Erro ao confirmar reserva.');
+    btn.disabled = false;
+    btn.textContent = 'Confirmar reserva';
+  }
 }
 
 // ── Pix ───────────────────────────────────────────────────
