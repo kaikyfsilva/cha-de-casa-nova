@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chá de Casa Nova · Mirelly & Kaiky</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --creme: #FAF5EF;
+    --creme-medio: #F2E9DF;
+    --creme-escuro: #E8D9CA;
+    --marrom: #5C3A1E;
+    --marrom-medio: #7A5030;
+    --marrom-claro: #A67850;
+    --marrom-suave: #C4A882;
+    --texto: #3D2410;
+    --texto-suave: #7A5A3A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--creme);
+    color: var(--texto);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--marrom);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,168,130,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(196,168,130,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-mono {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--marrom-suave);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-icone {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 1.2rem;
+  }
+
+  .casa-svg {
+    width: 64px;
+    height: 52px;
+  }
+
+  .hero-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+    font-weight: 400;
+    color: #FAF5EF;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-nomes {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    color: var(--marrom-suave);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-data-bloco {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(196,168,130,0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .hero-data-celula {
+    padding: 0.7rem 1.2rem;
+    color: #FAF5EF;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-data-celula span {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--marrom-suave);
+    letter-spacing: 0.15em;
+    margin-top: 2px;
+  }
+
+  .hero-data-dia {
+    background: rgba(196,168,130,0.15);
+    border-left: 1px solid rgba(196,168,130,0.4);
+    border-right: 1px solid rgba(196,168,130,0.4);
+    padding: 0.7rem 1.4rem;
+    color: #FAF5EF;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .hero-local {
+    font-size: 0.82rem;
+    color: var(--marrom-suave);
+    letter-spacing: 0.05em;
+    margin-top: 0.8rem;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    background: var(--creme-medio);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--creme-escuro);
+  }
+
+  .intro p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--texto-suave);
+    max-width: 520px;
+    margin: 0 auto;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SEÇÃO TÍTULO ── */
+  .secao-titulo {
+    text-align: center;
+    padding: 2.2rem 1.5rem 0.5rem;
+  }
+
+  .secao-titulo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--marrom);
+    margin-bottom: 0.3rem;
+  }
+
+  .secao-titulo p {
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .divisor {
+    width: 40px;
+    height: 1px;
+    background: var(--marrom-claro);
+    margin: 0.8rem auto 0;
+  }
+
+  /* ── LISTA DE PRESENTES ── */
+  .presentes-container {
+    padding: 1.5rem 1rem 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .categoria-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--marrom-claro);
+    padding: 1.2rem 0.5rem 0.4rem;
+  }
+
+  .presente-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: white;
+    border: 1px solid var(--creme-escuro);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+
+  .presente-item:hover:not(.indisponivel) {
+    border-color: var(--marrom-suave);
+    box-shadow: 0 2px 12px rgba(92,58,30,0.08);
+  }
+
+  .presente-item.indisponivel {
+    background: var(--creme-medio);
+    cursor: default;
+    opacity: 0.75;
+  }
+
+  .presente-item.indisponivel .presente-nome {
+    text-decoration: line-through;
+    color: var(--texto-suave);
+  }
+
+  .presente-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--creme-escuro);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .presente-item:not(.indisponivel):hover .presente-radio {
+    border-color: var(--marrom-suave);
+  }
+
+  .presente-radio.marcado {
+    background: var(--marrom);
+    border-color: var(--marrom);
+  }
+
+  .presente-radio.marcado::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+  }
+
+  .presente-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .presente-nome {
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: var(--texto);
+    line-height: 1.3;
+  }
+
+  .presente-detalhe {
+    font-size: 0.75rem;
+    color: var(--texto-suave);
+    margin-top: 1px;
+  }
+
+  .badge-reservado {
+    background: var(--marrom);
+    color: var(--creme);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  /* ── CAMPO OUTROS ── */
+  .outros-container {
+    padding: 0.5rem 1rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .outros-card {
+    background: white;
+    border: 1px solid var(--creme-escuro);
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .outros-card label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--marrom-claro);
+    margin-bottom: 0.8rem;
+  }
+
+  .outros-card input[type="text"] {
+    width: 100%;
+    border: 1px solid var(--creme-escuro);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+    font-family: 'Lato', sans-serif;
+    color: var(--texto);
+    background: var(--creme);
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 0.8rem;
+  }
+
+  .outros-card input[type="text"]:focus {
+    border-color: var(--marrom-suave);
+  }
+
+  .outros-card input::placeholder { color: var(--marrom-suave); opacity: 0.6; }
+
+  /* ── CAMPO NOME ── */
+  .nome-container {
+    padding: 0 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .nome-card {
+    background: white;
+    border: 1px solid var(--creme-escuro);
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .nome-card label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--marrom-claro);
+    margin-bottom: 0.8rem;
+  }
+
+  .nome-card input[type="text"] {
+    width: 100%;
+    border: 1px solid var(--creme-escuro);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+    font-family: 'Lato', sans-serif;
+    color: var(--texto);
+    background: var(--creme);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .nome-card input[type="text"]:focus { border-color: var(--marrom-suave); }
+  .nome-card input::placeholder { color: var(--marrom-suave); opacity: 0.6; }
+
+  /* ── BOTÃO CONFIRMAR ── */
+  .btn-container {
+    padding: 1.2rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .btn-confirmar {
+    width: 100%;
+    background: var(--marrom);
+    color: var(--creme);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .btn-confirmar:hover { background: var(--marrom-medio); }
+  .btn-confirmar:active { transform: scale(0.98); }
+  .btn-confirmar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── MENSAGEM DE SUCESSO ── */
+  .msg-sucesso {
+    display: none;
+    background: #EEF6E8;
+    border: 1px solid #B7D98D;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    font-size: 0.88rem;
+    color: #3B6611;
+    margin: 0 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── PIX ── */
+  .pix-section {
+    margin: 1.5rem 1rem 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pix-card {
+    background: var(--marrom);
+    border-radius: 14px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    color: var(--creme);
+  }
+
+  .pix-card .pix-icone {
+    width: 44px;
+    height: 44px;
+    background: rgba(250,245,239,0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.8rem;
+  }
+
+  .pix-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+
+  .pix-card p {
+    font-size: 0.78rem;
+    color: var(--marrom-suave);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .pix-chave-bloco {
+    background: rgba(250,245,239,0.08);
+    border: 1px solid rgba(196,168,130,0.3);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .pix-chave-info {
+    text-align: left;
+  }
+
+  .pix-chave-nome {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marrom-suave);
+    margin-bottom: 2px;
+  }
+
+  .pix-chave-valor {
+    font-size: 0.92rem;
+    color: var(--creme);
+    font-weight: 400;
+  }
+
+  .btn-copiar {
+    background: rgba(250,245,239,0.12);
+    border: 1px solid rgba(196,168,130,0.3);
+    border-radius: 6px;
+    color: var(--creme);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Lato', sans-serif;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-copiar:hover { background: rgba(250,245,239,0.2); }
+  .btn-copiar.copiado { color: #9FE1CB; border-color: #9FE1CB; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.75rem;
+    color: var(--marrom-suave);
+    letter-spacing: 0.06em;
+    margin-top: 1.5rem;
+  }
+
+  footer .mk {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--marrom);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(61,36,16,0.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.aberto { display: flex; }
+
+  .modal-box {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--marrom);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-box p {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .modal-box .presente-destaque {
+    background: var(--creme-medio);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    color: var(--marrom);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-btns {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .modal-btns button {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-cancelar {
+    background: transparent;
+    border: 1px solid var(--creme-escuro);
+    color: var(--texto-suave);
+  }
+
+  .btn-reservar {
+    background: var(--marrom);
+    border: none;
+    color: var(--creme);
+  }
+
+  .btn-reservar:hover { background: var(--marrom-medio); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-mono">mK · 20.06</p>
+  <div class="hero-icone">
+    <svg class="casa-svg" viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 28 L32 6 L56 28" stroke="#C4A882" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <rect x="14" y="27" width="36" height="22" rx="1" fill="#C4A882" opacity="0.25" stroke="#C4A882" stroke-width="2"/>
+      <rect x="26" y="35" width="12" height="14" rx="1" fill="#C4A882" opacity="0.5"/>
+    </svg>
+  </div>
+  <h1 class="hero-titulo">Chá de Casa Nova</h1>
+  <p class="hero-nomes">Mirelly &amp; Kaiky</p>
+
+  <div class="hero-data-bloco">
+    <div class="hero-data-celula">Sábado<span>17:00</span></div>
+    <div class="hero-data-dia">20</div>
+    <div class="hero-data-celula">Junho<span>2026</span></div>
+  </div>
+
+  <p class="hero-local">Rua Evaldo Braga, nº 91 · São Domingos</p>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+  <p>Com a mudança para Campina Grande, resolvemos dar esse passo e iniciar um novo ciclo juntos. Queremos comemorar ao lado de pessoas especiais. Esperamos você!</p>
+</section>
+
+<!-- LISTA DE PRESENTES -->
+<section>
+  <div class="secao-titulo">
+    <h2>Lista de Presentes</h2>
+    <p>Clique para reservar um item</p>
+    <div class="divisor"></div>
+  </div>
+
+  <div class="presentes-container" id="lista-presentes">
+
+    <div class="categoria-label">🍳 Cozinha</div>
+    <div class="presente-item" data-id="1" data-nome="Conjunto de panelas (5 peças)" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Conjunto de panelas (5 peças)</div>
+        <div class="presente-detalhe">Aço inox ou antiaderente</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="2" data-nome="Conjunto de utensílios de cozinha" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Conjunto de utensílios de cozinha</div>
+        <div class="presente-detalhe">Espátula, concha, escumadeira, etc.</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="3" data-nome="Jogo de xícaras (6 peças)" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Jogo de xícaras (6 peças)</div>
+        <div class="presente-detalhe">Com pires</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="4" data-nome="Jogo de pratos (6 peças)" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Jogo de pratos (6 peças)</div>
+        <div class="presente-detalhe">Raso e fundo</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="5" data-nome="Jogo de copos (6 peças)" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Jogo de copos (6 peças)</div>
+        <div class="presente-detalhe">Vidro ou cristal</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="6" data-nome="Garrafa/jarra para suco" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Garrafa / jarra para suco</div>
+        <div class="presente-detalhe">De vidro</div>
+      </div>
+    </div>
+
+    <div class="categoria-label">🛏️ Cama, Mesa e Banho</div>
+    <div class="presente-item" data-id="7" data-nome="Jogo de toalhas de banho" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Jogo de toalhas de banho</div>
+        <div class="presente-detalhe">4 peças</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="8" data-nome="Jogo de lençóis casal" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Jogo de lençóis casal</div>
+        <div class="presente-detalhe">200 fios ou mais</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="9" data-nome="Jogo americano / sousplat" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Jogo americano / sousplat</div>
+        <div class="presente-detalhe">6 peças</div>
+      </div>
+    </div>
+
+    <div class="categoria-label">🛁 Banheiro</div>
+    <div class="presente-item" data-id="10" data-nome="Conjunto de acessórios de banheiro" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Conjunto de acessórios de banheiro</div>
+        <div class="presente-detalhe">Saboneteira, porta-escova, etc.</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="11" data-nome="Tapete de banheiro" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Tapete de banheiro</div>
+        <div class="presente-detalhe">Antiderrapante</div>
+      </div>
+    </div>
+
+    <div class="categoria-label">🛋️ Sala</div>
+    <div class="presente-item" data-id="12" data-nome="Tapete para sala" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Tapete para sala</div>
+        <div class="presente-detalhe">Médio ou grande</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="13" data-nome="Almofadas decorativas" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Almofadas decorativas</div>
+        <div class="presente-detalhe">Kit com 2 ou mais</div>
+      </div>
+    </div>
+
+    <div class="categoria-label">⚡ Eletrodomésticos</div>
+    <div class="presente-item" data-id="14" data-nome="Liquidificador" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Liquidificador</div>
+        <div class="presente-detalhe">600W ou mais</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="15" data-nome="Sanduicheira / grill elétrico" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Sanduicheira / grill elétrico</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="16" data-nome="Ferro de passar roupa" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Ferro de passar roupa</div>
+        <div class="presente-detalhe">A vapor</div>
+      </div>
+    </div>
+    <div class="presente-item" data-id="17" data-nome="Ventilador de mesa ou torre" onclick="clicarPresente(this)">
+      <div class="presente-radio"></div>
+      <div class="presente-info">
+        <div class="presente-nome">Ventilador de mesa ou torre</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAMPO OUTROS -->
+<div class="outros-container">
+  <div class="outros-card">
+    <label for="presente-outro">✨ Outros — conte o que vai trazer</label>
+    <input type="text" id="presente-outro" placeholder="Ex: uma planta, itens de decoração...">
+    <p style="font-size:0.75rem; color:var(--texto-suave); line-height:1.5;">Se quiser trazer algo que não está na lista, escreva aqui para evitar repetições com outros convidados!</p>
+  </div>
+</div>
+
+<!-- NOME DO CONVIDADO -->
+<div class="nome-container">
+  <div class="nome-card">
+    <label for="nome-convidado">Seu nome</label>
+    <input type="text" id="nome-convidado" placeholder="Quem está reservando?">
+  </div>
+</div>
+
+<!-- BOTÃO CONFIRMAR -->
+<div class="btn-container">
+  <button class="btn-confirmar" onclick="confirmarReserva()">Confirmar reserva</button>
+</div>
+
+<div class="msg-sucesso" id="msg-sucesso">
+  🎉 Reserva confirmada! Muito obrigado(a) pela carinho. Até dia 20!
+</div>
+
+<!-- PIX -->
+<section>
+  <div class="secao-titulo" style="padding-top: 2rem;">
+    <h2>Contribuir com Pix</h2>
+    <p>Para quem prefere presentear com um valor</p>
+    <div class="divisor"></div>
+  </div>
+
+  <div class="pix-section" style="padding: 1rem;">
+    <div class="pix-card">
+      <div class="pix-icone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4A882" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h3>Chave Pix</h3>
+      <p>Qualquer valor é muito bem-vindo e cheio de amor 💛</p>
+
+      <div class="pix-chave-bloco">
+        <div class="pix-chave-info">
+          <div class="pix-chave-nome">Mirelly Guilhermino</div>
+          <div class="pix-chave-valor">(81) 99145-1768</div>
+        </div>
+        <button class="btn-copiar" onclick="copiarPix(this, '81991451768')">Copiar</button>
+      </div>
+
+      <div class="pix-chave-bloco">
+        <div class="pix-chave-info">
+          <div class="pix-chave-nome">Kaiky Ferreira</div>
+          <div class="pix-chave-valor">(81) 98370-8100</div>
+        </div>
+        <button class="btn-copiar" onclick="copiarPix(this, '81983708100')">Copiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="mk">mK</span>
+  20 de Junho de 2026 · Com amor ♡
+</footer>
+
+<!-- MODAL DE CONFIRMAÇÃO -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <h3>Reservar presente?</h3>
+    <p>Ao confirmar, este item ficará marcado como reservado para os demais convidados.</p>
+    <div class="presente-destaque" id="modal-nome-presente"></div>
+    <div class="modal-btns">
+      <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+      <button class="btn-reservar" onclick="confirmarItem()">Reservar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'cha_mk_2026_reservas';
+
+function getReservas() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch(e) { return {}; }
+}
+
+function salvarReservas(r) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(r));
+}
+
+let itemSelecionado = null;
+
+function renderizarEstado() {
+  const reservas = getReservas();
+  document.querySelectorAll('.presente-item').forEach(item => {
+    const id = item.dataset.id;
+    if (reservas[id]) {
+      item.classList.add('indisponivel');
+      item.onclick = null;
+      const radio = item.querySelector('.presente-radio');
+      radio.classList.add('marcado');
+      if (!item.querySelector('.badge-reservado')) {
+        const badge = document.createElement('span');
+        badge.className = 'badge-reservado';
+        badge.textContent = 'Reservado';
+        item.appendChild(badge);
+      }
+    }
+  });
+}
+
+function clicarPresente(el) {
+  if (el.classList.contains('indisponivel')) return;
+  itemSelecionado = el;
+  document.getElementById('modal-nome-presente').textContent = el.dataset.nome;
+  document.getElementById('modal').classList.add('aberto');
+}
+
+function fecharModal() {
+  document.getElementById('modal').classList.remove('aberto');
+  itemSelecionado = null;
+}
+
+function confirmarItem() {
+  if (!itemSelecionado) return;
+  const id = itemSelecionado.dataset.id;
+  const reservas = getReservas();
+  reservas[id] = true;
+  salvarReservas(reservas);
+  fecharModal();
+  renderizarEstado();
+}
+
+function confirmarReserva() {
+  const nome = document.getElementById('nome-convidado').value.trim();
+  const outro = document.getElementById('presente-outro').value.trim();
+  const reservas = getReservas();
+  const temReserva = Object.keys(reservas).length > 0 || outro;
+
+  if (!nome) {
+    document.getElementById('nome-convidado').focus();
+    document.getElementById('nome-convidado').style.borderColor = '#E24B4A';
+    setTimeout(() => document.getElementById('nome-convidado').style.borderColor = '', 2000);
+    return;
+  }
+
+  if (!temReserva) {
+    alert('Selecione pelo menos um presente ou escreva no campo "Outros"!');
+    return;
+  }
+
+  document.getElementById('msg-sucesso').style.display = 'block';
+  document.querySelector('.btn-confirmar').disabled = true;
+  document.getElementById('msg-sucesso').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function copiarPix(btn, chave) {
+  navigator.clipboard.writeText(chave).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copiado');
+    setTimeout(() => {
+      btn.textContent = 'Copiar';
+      btn.classList.remove('copiado');
+    }, 2000);
+  });
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) fecharModal();
+});
+
+renderizarEstado();
+</script>
+</body>
+</html>
