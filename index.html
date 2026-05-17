@@ -15,7 +15,6 @@
   html { scroll-behavior: smooth; }
   body { background: var(--creme); color: var(--texto); font-family: 'Lato', sans-serif; font-weight: 300; min-height: 100vh; }
 
-  /* HERO */
   .hero { background: var(--marrom); padding: 3rem 1.5rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,168,130,0.18) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 80% 20%, rgba(196,168,130,0.12) 0%, transparent 60%); pointer-events: none; }
   .hero-mono { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--marrom-suave); text-transform: uppercase; margin-bottom: 1.5rem; }
@@ -29,40 +28,48 @@
   .hero-data-dia { background: rgba(196,168,130,0.15); border-left: 1px solid rgba(196,168,130,0.4); border-right: 1px solid rgba(196,168,130,0.4); padding: 0.7rem 1.4rem; color: #FAF5EF; font-size: 2rem; font-weight: 700; }
   .hero-local { font-size: 0.82rem; color: var(--marrom-suave); letter-spacing: 0.05em; margin-top: 0.8rem; }
 
-  /* LOADING */
   .loading-bar { height: 3px; background: var(--creme-escuro); overflow: hidden; }
   .loading-bar-inner { height: 100%; background: var(--marrom-claro); width: 0; }
   @keyframes loadpulse { 0%{width:0;margin-left:0} 50%{width:60%;margin-left:20%} 100%{width:0;margin-left:100%} }
   .loading-bar-inner.animando { animation: loadpulse 1.2s ease-in-out infinite; }
 
-  /* INTRO */
   .intro { background: var(--creme-medio); padding: 2rem 1.5rem; text-align: center; border-bottom: 1px solid var(--creme-escuro); }
   .intro p { font-size: 0.88rem; line-height: 1.8; color: var(--texto-suave); max-width: 520px; margin: 0 auto; text-transform: uppercase; letter-spacing: 0.04em; }
 
-  /* SEÇÃO */
   .secao-titulo { text-align: center; padding: 2.2rem 1.5rem 0.5rem; }
   .secao-titulo h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--marrom); margin-bottom: 0.3rem; }
   .secao-titulo p { font-size: 0.8rem; color: var(--texto-suave); letter-spacing: 0.08em; text-transform: uppercase; }
   .divisor { width: 40px; height: 1px; background: var(--marrom-claro); margin: 0.8rem auto 0; }
 
-  /* LISTA */
   .presentes-container { padding: 1.5rem 1rem 0.5rem; max-width: 600px; margin: 0 auto; }
   .categoria-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--marrom-claro); padding: 1.2rem 0.5rem 0.4rem; }
   .presente-item { display: flex; align-items: center; gap: 0.8rem; background: white; border: 1px solid var(--creme-escuro); border-radius: 10px; padding: 0.9rem 1rem; margin-bottom: 0.6rem; cursor: pointer; transition: all 0.2s ease; -webkit-tap-highlight-color: transparent; }
   .presente-item:hover:not(.indisponivel) { border-color: var(--marrom-suave); box-shadow: 0 2px 12px rgba(92,58,30,0.08); }
   .presente-item.indisponivel { background: var(--creme-medio); cursor: default; opacity: 0.78; }
   .presente-item.indisponivel .presente-nome { text-decoration: line-through; color: var(--texto-suave); }
+  .presente-item.selecionado { border-color: var(--marrom-suave); background: #fdf8f3; }
   .presente-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--creme-escuro); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .presente-item:not(.indisponivel):hover .presente-radio { border-color: var(--marrom-suave); }
   .presente-radio.marcado { background: var(--marrom); border-color: var(--marrom); }
   .presente-radio.marcado::after { content: ''; width: 8px; height: 8px; background: white; border-radius: 50%; }
+  .presente-radio.selecionado-local { background: var(--marrom-suave); border-color: var(--marrom-suave); }
+  .presente-radio.selecionado-local::after { content: ''; width: 8px; height: 8px; background: white; border-radius: 50%; }
   .presente-info { flex: 1; min-width: 0; }
   .presente-nome { font-size: 0.92rem; color: var(--texto); line-height: 1.3; }
   .presente-detalhe { font-size: 0.75rem; color: var(--texto-suave); margin-top: 1px; }
   .badge-reservado { background: var(--marrom); color: var(--creme); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; flex-shrink: 0; font-weight: 700; }
   .reservado-por { font-size: 0.72rem; color: var(--marrom-claro); margin-top: 3px; font-style: italic; }
 
-  /* FORMULÁRIO */
+  /* SEÇÃO OUTROS PÚBLICO */
+  .outros-publicos-section { max-width: 600px; margin: 0 auto; padding: 0 1rem 0.5rem; }
+  .outros-publicos-card { background: white; border: 1px solid var(--creme-escuro); border-radius: 10px; padding: 1.2rem; }
+  .outros-publicos-card h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--marrom-claro); margin-bottom: 0.8rem; }
+  .outros-publicos-lista { display: flex; flex-direction: column; gap: 0.5rem; }
+  .outro-item-publico { display: flex; align-items: flex-start; gap: 0.6rem; background: var(--creme); border-radius: 7px; padding: 0.6rem 0.8rem; }
+  .outro-item-publico .outro-texto { font-size: 0.87rem; color: var(--texto); flex: 1; }
+  .outro-item-publico .outro-quem { font-size: 0.72rem; color: var(--marrom-claro); font-style: italic; margin-top: 2px; }
+  .outros-vazio { font-size: 0.82rem; color: var(--texto-suave); font-style: italic; text-align: center; padding: 0.5rem 0; }
+
   .outros-container, .nome-container { padding: 0.5rem 1rem 0; max-width: 600px; margin: 0 auto; }
   .outros-card, .nome-card { background: white; border: 1px solid var(--creme-escuro); border-radius: 10px; padding: 1.2rem; margin-bottom: 0.6rem; }
   .outros-card label, .nome-card label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--marrom-claro); margin-bottom: 0.8rem; }
@@ -71,7 +78,6 @@
   input::placeholder { color: var(--marrom-suave); opacity: 0.6; }
   .outros-card p { font-size: 0.75rem; color: var(--texto-suave); line-height: 1.5; }
 
-  /* BOTÃO PRINCIPAL */
   .btn-container { padding: 1.2rem 1rem; max-width: 600px; margin: 0 auto; }
   .btn-confirmar { width: 100%; background: var(--marrom); color: var(--creme); border: none; border-radius: 10px; padding: 1rem; font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.1s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .btn-confirmar:hover { background: var(--marrom-medio); }
@@ -79,7 +85,6 @@
   .btn-confirmar:disabled { opacity: 0.5; cursor: not-allowed; }
   .msg-sucesso { display: none; background: #EEF6E8; border: 1px solid #B7D98D; border-radius: 10px; padding: 1rem 1.2rem; text-align: center; font-size: 0.88rem; color: #3B6611; margin: 0 1rem 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-  /* PIX */
   .pix-section { margin: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
   .pix-card { background: var(--marrom); border-radius: 14px; padding: 1.5rem 1.2rem; text-align: center; color: var(--creme); }
   .pix-icone { width: 44px; height: 44px; background: rgba(250,245,239,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem; }
@@ -93,13 +98,11 @@
   .btn-copiar:hover { background: rgba(250,245,239,0.2); }
   .btn-copiar.copiado { color: #9FE1CB; border-color: #9FE1CB; }
 
-  /* FOOTER */
   footer { text-align: center; padding: 2rem 1rem; font-size: 0.75rem; color: var(--marrom-suave); letter-spacing: 0.06em; margin-top: 1.5rem; }
   footer .mk { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--marrom); display: block; margin-bottom: 0.4rem; }
   .admin-link { display: inline-block; margin-top: 1.8rem; font-size: 0.68rem; color: var(--creme-escuro); cursor: pointer; opacity: 0.3; letter-spacing: 0.1em; text-transform: uppercase; transition: opacity 0.2s; }
   .admin-link:hover { opacity: 1; }
 
-  /* MODAIS */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(61,36,16,0.55); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
   .modal-overlay.aberto { display: flex; }
   .modal-box { background: white; border-radius: 16px; padding: 2rem 1.5rem; max-width: 360px; width: 100%; text-align: center; }
@@ -113,7 +116,6 @@
   .btn-reservar:hover { background: var(--marrom-medio); }
   .btn-reservar:disabled { opacity: 0.5; }
 
-  /* ADMIN */
   .admin-modal-box { background: white; border-radius: 16px; padding: 2rem 1.5rem; max-width: 400px; width: 100%; max-height: 85vh; overflow-y: auto; }
   .admin-modal-box h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--marrom); margin-bottom: 1.2rem; text-align: center; }
   .admin-senha-wrap { margin-bottom: 1rem; }
@@ -131,20 +133,12 @@
   .admin-vazia { text-align: center; font-size: 0.85rem; color: var(--texto-suave); padding: 1.5rem 0; }
   .admin-fechar { display: block; margin: 1.2rem auto 0; background: transparent; border: none; font-size: 0.78rem; color: var(--texto-suave); cursor: pointer; font-family: 'Lato', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
 
-  /* BANNER CONFIGURAÇÃO */
-  .config-banner { background: #FFF8E7; border: 1px solid #F5C842; border-radius: 10px; padding: 1rem 1.2rem; margin: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 0.82rem; color: #7A5A00; line-height: 1.6; }
-  .config-banner strong { font-weight: 700; }
-  .config-banner code { background: rgba(0,0,0,0.07); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 0.85em; }
-
-  /* SPINNER */
   .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
-  .spinner-dark { border-color: rgba(92,58,30,0.2); border-top-color: var(--marrom); }
   @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <header class="hero">
   <p class="hero-mono">mK · 20.06</p>
   <div class="hero-icone">
@@ -166,113 +160,45 @@
 
 <div class="loading-bar"><div class="loading-bar-inner animando" id="loading-bar"></div></div>
 
-<!-- BANNER (some automaticamente após configurar) -->
-<div class="config-banner" id="config-banner" style="display:none;">
-  ⚙️ <strong>Configure o Supabase:</strong> Abra este arquivo no editor de texto e substitua <code>SUA_URL_AQUI</code> e <code>SUA_CHAVE_AQUI</code> pelos valores do seu projeto Supabase. Depois salve e faça upload novamente.
-</div>
-
 <section class="intro">
   <p>Com a mudança para Campina Grande, resolvemos dar esse passo e iniciar um novo ciclo juntos. Queremos comemorar ao lado de pessoas especiais. Esperamos você!</p>
 </section>
 
-<!-- LISTA DE PRESENTES -->
+<!-- LISTA DE PRESENTES (gerada pelo JS) -->
 <section>
   <div class="secao-titulo">
     <h2>Lista de Presentes</h2>
-    <p>Clique para reservar um item</p>
+    <p>Selecione o(s) item(s) que vai levar</p>
     <div class="divisor"></div>
   </div>
   <div class="presentes-container" id="lista-presentes">
-    <div class="categoria-label">🍳 Cozinha</div>
-    <div class="presente-item" data-id="1" data-nome="Conjunto de panelas (5 peças)" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Conjunto de panelas (5 peças)</div><div class="presente-detalhe">Aço inox ou antiaderente</div></div>
-    </div>
-    <div class="presente-item" data-id="2" data-nome="Conjunto de utensílios de cozinha" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Conjunto de utensílios de cozinha</div><div class="presente-detalhe">Espátula, concha, escumadeira, etc.</div></div>
-    </div>
-    <div class="presente-item" data-id="3" data-nome="Jogo de xícaras (6 peças)" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Jogo de xícaras (6 peças)</div><div class="presente-detalhe">Com pires</div></div>
-    </div>
-    <div class="presente-item" data-id="4" data-nome="Jogo de pratos (6 peças)" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Jogo de pratos (6 peças)</div><div class="presente-detalhe">Raso e fundo</div></div>
-    </div>
-    <div class="presente-item" data-id="5" data-nome="Jogo de copos (6 peças)" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Jogo de copos (6 peças)</div><div class="presente-detalhe">Vidro ou cristal</div></div>
-    </div>
-    <div class="presente-item" data-id="6" data-nome="Garrafa / jarra para suco" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Garrafa / jarra para suco</div><div class="presente-detalhe">De vidro</div></div>
-    </div>
+    <!-- preenchido pelo JavaScript -->
+  </div>
+</section>
 
-    <div class="categoria-label">🛏️ Cama, Mesa e Banho</div>
-    <div class="presente-item" data-id="7" data-nome="Jogo de toalhas de banho" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Jogo de toalhas de banho</div><div class="presente-detalhe">4 peças</div></div>
-    </div>
-    <div class="presente-item" data-id="8" data-nome="Jogo de lençóis casal" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Jogo de lençóis casal</div><div class="presente-detalhe">200 fios ou mais</div></div>
-    </div>
-    <div class="presente-item" data-id="9" data-nome="Jogo americano / sousplat" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Jogo americano / sousplat</div><div class="presente-detalhe">6 peças</div></div>
-    </div>
-
-    <div class="categoria-label">🛁 Banheiro</div>
-    <div class="presente-item" data-id="10" data-nome="Conjunto de acessórios de banheiro" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Conjunto de acessórios de banheiro</div><div class="presente-detalhe">Saboneteira, porta-escova, etc.</div></div>
-    </div>
-    <div class="presente-item" data-id="11" data-nome="Tapete de banheiro" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Tapete de banheiro</div><div class="presente-detalhe">Antiderrapante</div></div>
-    </div>
-
-    <div class="categoria-label">🛋️ Sala</div>
-    <div class="presente-item" data-id="12" data-nome="Tapete para sala" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Tapete para sala</div><div class="presente-detalhe">Médio ou grande</div></div>
-    </div>
-    <div class="presente-item" data-id="13" data-nome="Almofadas decorativas" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Almofadas decorativas</div><div class="presente-detalhe">Kit com 2 ou mais</div></div>
-    </div>
-
-    <div class="categoria-label">⚡ Eletrodomésticos</div>
-    <div class="presente-item" data-id="14" data-nome="Liquidificador" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Liquidificador</div><div class="presente-detalhe">600W ou mais</div></div>
-    </div>
-    <div class="presente-item" data-id="15" data-nome="Sanduicheira / grill elétrico" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Sanduicheira / grill elétrico</div></div>
-    </div>
-    <div class="presente-item" data-id="16" data-nome="Ferro de passar roupa" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Ferro de passar roupa</div><div class="presente-detalhe">A vapor</div></div>
-    </div>
-    <div class="presente-item" data-id="17" data-nome="Ventilador de mesa ou torre" onclick="clicarPresente(this)">
-      <div class="presente-radio"></div>
-      <div class="presente-info"><div class="presente-nome">Ventilador de mesa ou torre</div></div>
+<!-- OUTROS JÁ REGISTRADOS (visível para todos) -->
+<section id="secao-outros-publicos" style="display:none;">
+  <div class="secao-titulo">
+    <h2>Presentes "Outros"</h2>
+    <p>Itens que alguém já disse que vai levar</p>
+    <div class="divisor"></div>
+  </div>
+  <div class="outros-publicos-section">
+    <div class="outros-publicos-card">
+      <div class="outros-publicos-lista" id="outros-publicos-lista"></div>
     </div>
   </div>
 </section>
 
-<!-- OUTROS -->
+<!-- FORMULÁRIO -->
 <div class="outros-container">
   <div class="outros-card">
     <label for="presente-outro">✨ Outros — conte o que vai trazer</label>
     <input type="text" id="presente-outro" placeholder="Ex: uma planta, itens de decoração...">
-    <p>Se quiser trazer algo fora da lista, escreva aqui para evitar repetições!</p>
+    <p>Se quiser trazer algo fora da lista, escreva aqui para que todos possam ver e evitar repetições!</p>
   </div>
 </div>
 
-<!-- NOME -->
 <div class="nome-container">
   <div class="nome-card">
     <label for="nome-convidado">Seu nome</label>
@@ -280,7 +206,6 @@
   </div>
 </div>
 
-<!-- BOTÃO -->
 <div class="btn-container">
   <button class="btn-confirmar" id="btn-confirmar" onclick="confirmarReserva()">Confirmar reserva</button>
 </div>
@@ -326,7 +251,6 @@
   <span class="admin-link" onclick="abrirAdmin()">⚙ área restrita</span>
 </footer>
 
-
 <!-- MODAL ADMIN -->
 <div class="modal-overlay" id="modal-admin" onclick="if(event.target===this)fecharAdmin()">
   <div class="admin-modal-box">
@@ -347,37 +271,100 @@
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════
-//  ⚙️  CONFIGURAÇÃO — preencha após criar o Supabase
-// ════════════════════════════════════════════════════════
-const SUPABASE_URL  = 'https://kzvsmjmywfxpypiwqxdb.supabase.co';   // ex: https://xyzxyz.supabase.co
-const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6dnNtam15d2Z4cHlwaXdxeGRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5NDEwMjUsImV4cCI6MjA5NDUxNzAyNX0.umu-LFQdGkhqQgEW3OrNY28CzwYbrJJQHFtn0Oxe-lI'; // anon/public key do Supabase
-const SENHA_ADMIN   = 'kauanny2203';          // troque para uma senha sua!
-// ════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════════════
+//  ✏️  EDITE AQUI A LISTA DE PRESENTES
+//  Formato: { categoria: 'Nome da categoria', itens: [ { nome, detalhe } ] }
+//  - "detalhe" é opcional (subtítulo cinza embaixo do nome)
+//  - Para remover um item, basta apagar a linha
+//  - Para adicionar, copie uma linha e edite
+// ════════════════════════════════════════════════════════════════════════
+const LISTA_PRESENTES = [
+  {
+    categoria: '🍳 Cozinha',
+    itens: [
+      { nome: 'Conjunto de panelas (5 peças)',      detalhe: 'Aço inox ou antiaderente' },
+      { nome: 'Conjunto de utensílios de cozinha',  detalhe: 'Espátula, concha, escumadeira, etc.' },
+      { nome: 'Jogo de xícaras (6 peças)',          detalhe: 'Com pires' },
+      { nome: 'Jogo de pratos (6 peças)',            detalhe: 'Raso e fundo' },
+      { nome: 'Jogo de copos (6 peças)',             detalhe: 'Vidro ou cristal' },
+      { nome: 'Garrafa / jarra para suco',           detalhe: 'De vidro' },
+    ]
+  },
+  {
+    categoria: '🛏️ Cama, Mesa e Banho',
+    itens: [
+      { nome: 'Jogo de toalhas de banho',   detalhe: '4 peças' },
+      { nome: 'Jogo de lençóis casal',      detalhe: '200 fios ou mais' },
+      { nome: 'Jogo americano / sousplat',  detalhe: '6 peças' },
+    ]
+  },
+  {
+    categoria: '🛁 Banheiro',
+    itens: [
+      { nome: 'Conjunto de acessórios de banheiro', detalhe: 'Saboneteira, porta-escova, etc.' },
+      { nome: 'Tapete de banheiro',                  detalhe: 'Antiderrapante' },
+    ]
+  },
+  {
+    categoria: '🛋️ Sala',
+    itens: [
+      { nome: 'Tapete para sala',        detalhe: 'Médio ou grande' },
+      { nome: 'Almofadas decorativas',   detalhe: 'Kit com 2 ou mais' },
+    ]
+  },
+  {
+    categoria: '⚡ Eletrodomésticos',
+    itens: [
+      { nome: 'Liquidificador',               detalhe: '600W ou mais' },
+      { nome: 'Sanduicheira / grill elétrico' },
+      { nome: 'Ferro de passar roupa',        detalhe: 'A vapor' },
+      { nome: 'Ventilador de mesa ou torre' },
+    ]
+  },
+];
+// ════════════════════════════════════════════════════════════════════════
 
-const TABELA = 'reservas';
-const configurado = true;
- 
-const PRESENTES = {
-  '1':'Conjunto de panelas (5 peças)','2':'Conjunto de utensílios de cozinha',
-  '3':'Jogo de xícaras (6 peças)','4':'Jogo de pratos (6 peças)',
-  '5':'Jogo de copos (6 peças)','6':'Garrafa / jarra para suco',
-  '7':'Jogo de toalhas de banho','8':'Jogo de lençóis casal',
-  '9':'Jogo americano / sousplat','10':'Conjunto de acessórios de banheiro',
-  '11':'Tapete de banheiro','12':'Tapete para sala','13':'Almofadas decorativas',
-  '14':'Liquidificador','15':'Sanduicheira / grill elétrico',
-  '16':'Ferro de passar roupa','17':'Ventilador de mesa ou torre'
-};
+// ── Supabase ──────────────────────────────────────────────────────────
+const SUPABASE_URL = 'https://kzvsmjmywfxpypiwqxdb.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6dnNtam15d2Z4cHlwaXdxeGRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5NDEwMjUsImV4cCI6MjA5NDUxNzAyNX0.umu-LFQdGkhqQgEW3OrNY28CzwYbrJJQHFtn0Oxe-lI';
+const SENHA_ADMIN  = 'kauanny2203';
+const TABELA       = 'reservas';
 
-let reservasLocal = {};
+// ── Mapa de id → nome (gerado automaticamente da lista) ───────────────
+const PRESENTES_MAP = {};
+let idCounter = 1;
+LISTA_PRESENTES.forEach(cat => {
+  cat.itens.forEach(item => {
+    PRESENTES_MAP[String(idCounter++)] = item.nome;
+  });
+});
+
+let reservasLocal  = {};
 let itensSelecionados = [];
- 
-// ── Mostra banner se não configurado ─────────────────────
-if (!configurado) {
-  document.getElementById('config-banner').style.display = 'block';
+
+// ── Gera HTML da lista dinamicamente ─────────────────────────────────
+function gerarLista() {
+  const container = document.getElementById('lista-presentes');
+  let html = '';
+  let id = 1;
+  LISTA_PRESENTES.forEach(cat => {
+    html += `<div class="categoria-label">${cat.categoria}</div>`;
+    cat.itens.forEach(item => {
+      html += `
+        <div class="presente-item" data-id="${id}" data-nome="${item.nome}" onclick="clicarPresente(this)">
+          <div class="presente-radio"></div>
+          <div class="presente-info">
+            <div class="presente-nome">${item.nome}</div>
+            ${item.detalhe ? `<div class="presente-detalhe">${item.detalhe}</div>` : ''}
+          </div>
+        </div>`;
+      id++;
+    });
+  });
+  container.innerHTML = html;
 }
 
-// ── Supabase helpers ──────────────────────────────────────
+// ── Supabase helpers ──────────────────────────────────────────────────
 async function sbFetch(path, opts = {}) {
   const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
     headers: {
@@ -395,46 +382,35 @@ async function sbFetch(path, opts = {}) {
 }
 
 async function lerReservas() {
-  if (!configurado) {
-    try { return JSON.parse(localStorage.getItem('cha_mk_reservas') || '{}'); } catch(e) { return {}; }
-  }
   try {
     const rows = await sbFetch(TABELA + '?select=item_id,nome,outro');
     const mapa = {};
     rows.forEach(r => { mapa[r.item_id] = { nome: r.nome, outro: r.outro }; });
     return mapa;
   } catch(e) {
-    console.warn('Supabase erro leitura, usando local:', e);
-    try { return JSON.parse(localStorage.getItem('cha_mk_reservas') || '{}'); } catch(e2) { return {}; }
+    console.warn('Supabase erro, usando local:', e);
+    try { return JSON.parse(localStorage.getItem('cha_mk_reservas') || '{}'); } catch { return {}; }
   }
 }
 
 async function reservarItem(itemId, nome, outro) {
-  if (!configurado) {
-    reservasLocal[itemId] = { nome, outro };
-    localStorage.setItem('cha_mk_reservas', JSON.stringify(reservasLocal));
-    return;
-  }
   await sbFetch(TABELA, {
     method: 'POST',
     body: JSON.stringify({ item_id: itemId, nome, outro: outro || null })
   });
+  localStorage.setItem('cha_mk_reservas', JSON.stringify(reservasLocal));
 }
 
 async function liberarItemDb(itemId) {
-  if (!configurado) {
-    delete reservasLocal[itemId];
-    localStorage.setItem('cha_mk_reservas', JSON.stringify(reservasLocal));
-    return;
-  }
   await sbFetch(TABELA + '?item_id=eq.' + encodeURIComponent(itemId), { method: 'DELETE' });
 }
 
-// ── Render ────────────────────────────────────────────────
+// ── Render ────────────────────────────────────────────────────────────
 function setLoading(on) {
   const bar = document.getElementById('loading-bar');
-  if (on) { bar.classList.add('animando'); }
-  else {
+  if (on) {
+    bar.classList.add('animando');
+  } else {
     bar.classList.remove('animando');
     bar.style.transition = 'width 0.4s ease';
     bar.style.width = '100%';
@@ -443,13 +419,20 @@ function setLoading(on) {
 }
 
 function renderizarEstado() {
+  // Lista principal
   document.querySelectorAll('.presente-item').forEach(item => {
     const id = item.dataset.id;
     const r = reservasLocal[id];
+    const radio = item.querySelector('.presente-radio');
+
     if (r) {
+      // Reservado por alguém
       item.classList.add('indisponivel');
+      item.classList.remove('selecionado');
       item.onclick = null;
-      item.querySelector('.presente-radio').classList.add('marcado');
+      radio.classList.add('marcado');
+      radio.classList.remove('selecionado-local');
+
       if (!item.querySelector('.badge-reservado')) {
         const badge = document.createElement('span');
         badge.className = 'badge-reservado';
@@ -457,34 +440,62 @@ function renderizarEstado() {
         item.appendChild(badge);
       }
       const info = item.querySelector('.presente-info');
-      const quemExistente = info.querySelector('.reservado-por');
-      if (r.nome) {
-        if (!quemExistente) {
-          const quem = document.createElement('div');
-          quem.className = 'reservado-por';
-          quem.textContent = 'por ' + r.nome;
-          info.appendChild(quem);
-        }
+      if (r.nome && !info.querySelector('.reservado-por')) {
+        const quem = document.createElement('div');
+        quem.className = 'reservado-por';
+        quem.textContent = 'por ' + r.nome;
+        info.appendChild(quem);
       }
     } else {
+      // Disponível
       item.classList.remove('indisponivel');
       item.onclick = function() { clicarPresente(this); };
-      item.querySelector('.presente-radio').classList.remove('marcado');
+      radio.classList.remove('marcado');
+
       const badge = item.querySelector('.badge-reservado');
       if (badge) badge.remove();
       const quem = item.querySelector('.reservado-por');
       if (quem) quem.remove();
+
+      // Mantém seleção local visual
+      if (itensSelecionados.includes(id)) {
+        item.classList.add('selecionado');
+        radio.classList.add('selecionado-local');
+      } else {
+        item.classList.remove('selecionado');
+        radio.classList.remove('selecionado-local');
+      }
     }
   });
+
+  // Seção "Outros" pública
+  const outrosEntries = Object.entries(reservasLocal).filter(([k]) => k.startsWith('outro_'));
+  const secao = document.getElementById('secao-outros-publicos');
+  const listaEl = document.getElementById('outros-publicos-lista');
+
+  if (outrosEntries.length > 0) {
+    secao.style.display = 'block';
+    listaEl.innerHTML = outrosEntries.map(([, r]) => `
+      <div class="outro-item-publico">
+        <div>
+          <div class="outro-texto">✨ ${r.outro || ''}</div>
+          ${r.nome ? `<div class="outro-quem">por ${r.nome}</div>` : ''}
+        </div>
+      </div>
+    `).join('');
+  } else {
+    secao.style.display = 'none';
+  }
 }
 
 async function inicializar() {
+  gerarLista();
   setLoading(true);
   reservasLocal = await lerReservas();
   renderizarEstado();
   setLoading(false);
 
-  // Atualiza a cada 30s para pegar reservas de outros dispositivos
+  // Atualiza a cada 30s
   setInterval(async () => {
     reservasLocal = await lerReservas();
     renderizarEstado();
@@ -492,45 +503,24 @@ async function inicializar() {
 }
 inicializar();
 
-// ── Modal reserva ─────────────────────────────────────────
+// ── Seleção de itens ──────────────────────────────────────────────────
 function clicarPresente(el) {
   if (el.classList.contains('indisponivel')) return;
-
   const id = el.dataset.id;
   const radio = el.querySelector('.presente-radio');
 
-  // desmarca se já estiver selecionado
   if (itensSelecionados.includes(id)) {
-    itensSelecionados = itensSelecionados.filter(item => item !== id);
-    radio.classList.remove('marcado');
-    return;
+    itensSelecionados = itensSelecionados.filter(i => i !== id);
+    radio.classList.remove('selecionado-local');
+    el.classList.remove('selecionado');
+  } else {
+    itensSelecionados.push(id);
+    radio.classList.add('selecionado-local');
+    el.classList.add('selecionado');
   }
-
-  // marca
-  itensSelecionados.push(id);
-  radio.classList.add('marcado');
 }
 
-async function confirmarItem() {
-  if (!itemSelecionado) return;
-  const id = itemSelecionado.dataset.id;
-  const nome = document.getElementById('nome-convidado').value.trim() || 'Convidado';
-  const btn = document.getElementById('btn-reservar-modal');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Reservando...';
-  try {
-    await reservarItem(id, nome, null);
-    reservasLocal[id] = { nome };
-    fecharModal();
-    renderizarEstado();
-  } catch(e) {
-    alert('Erro ao reservar. Tente novamente.');
-  }
-  btn.disabled = false;
-  btn.textContent = 'Reservar';
-}
-
-// ── Confirmar formulário ───────────────────────────────────
+// ── Confirmar reserva ─────────────────────────────────────────────────
 async function confirmarReserva() {
   const nome = document.getElementById('nome-convidado').value.trim();
   const outro = document.getElementById('presente-outro').value.trim();
@@ -539,72 +529,43 @@ async function confirmarReserva() {
     const inp = document.getElementById('nome-convidado');
     inp.style.borderColor = '#E24B4A';
     inp.focus();
-
-    setTimeout(() => {
-      inp.style.borderColor = '';
-    }, 2000);
-
+    setTimeout(() => { inp.style.borderColor = ''; }, 2000);
     return;
   }
-
   if (itensSelecionados.length === 0 && !outro) {
     alert('Selecione pelo menos um presente ou preencha o campo "Outros"!');
     return;
   }
 
   const btn = document.getElementById('btn-confirmar');
-
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Confirmando...';
 
   try {
-
-    // salva itens selecionados
     for (const id of itensSelecionados) {
       await reservarItem(id, nome, null);
-
       reservasLocal[id] = { nome };
     }
-
-    // salva campo outros
     if (outro) {
       const idOutro = 'outro_' + Date.now();
-
       await reservarItem(idOutro, nome, outro);
-
-      reservasLocal[idOutro] = {
-        nome,
-        outro
-      };
+      reservasLocal[idOutro] = { nome, outro };
     }
 
-    renderizarEstado();
-
-    // limpa seleção visual
     itensSelecionados = [];
-
-    document.querySelectorAll('.presente-radio').forEach(radio => {
-      radio.classList.remove('marcado');
-    });
-
+    renderizarEstado();
     btn.textContent = '✓ Confirmado';
-
     document.getElementById('msg-sucesso').style.display = 'block';
-
-    document.getElementById('msg-sucesso').scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-
+    document.getElementById('msg-sucesso').scrollIntoView({ behavior: 'smooth', block: 'center' });
   } catch(e) {
     console.error(e);
-    alert('Erro ao confirmar reserva.');
+    alert('Erro ao confirmar. Tente novamente.');
     btn.disabled = false;
     btn.textContent = 'Confirmar reserva';
   }
 }
 
-// ── Pix ───────────────────────────────────────────────────
+// ── Pix ───────────────────────────────────────────────────────────────
 function copiarPix(btn, chave) {
   navigator.clipboard.writeText(chave).then(() => {
     btn.textContent = 'Copiado!';
@@ -613,7 +574,7 @@ function copiarPix(btn, chave) {
   });
 }
 
-// ── Admin ─────────────────────────────────────────────────
+// ── Admin ─────────────────────────────────────────────────────────────
 function abrirAdmin() {
   document.getElementById('modal-admin').classList.add('aberto');
   document.getElementById('admin-senha-tela').style.display = 'block';
@@ -647,7 +608,7 @@ function renderizarAdminPainel() {
     const r = reservasLocal[id];
     const nomeItem = id.startsWith('outro_')
       ? '✨ Outros: ' + (r.outro || '')
-      : (PRESENTES[id] || 'Item ' + id);
+      : (PRESENTES_MAP[id] || 'Item ' + id);
     return `<div class="admin-item">
       <div>
         <div class="admin-item-nome">${nomeItem}</div>
