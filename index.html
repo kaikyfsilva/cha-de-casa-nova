@@ -439,13 +439,7 @@ function renderizarEstado() {
         badge.textContent = 'Reservado';
         item.appendChild(badge);
       }
-      const info = item.querySelector('.presente-info');
-      if (r.nome && !info.querySelector('.reservado-por')) {
-        const quem = document.createElement('div');
-        quem.className = 'reservado-por';
-        quem.textContent = 'por ' + r.nome;
-        info.appendChild(quem);
-      }
+      // nome visível só no painel admin
     } else {
       // Disponível
       item.classList.remove('indisponivel');
@@ -477,10 +471,7 @@ function renderizarEstado() {
     secao.style.display = 'block';
     listaEl.innerHTML = outrosEntries.map(([, r]) => `
       <div class="outro-item-publico">
-        <div>
-          <div class="outro-texto">✨ ${r.outro || ''}</div>
-          ${r.nome ? `<div class="outro-quem">por ${r.nome}</div>` : ''}
-        </div>
+        <div class="outro-texto">✨ ${r.outro || ''}</div>
       </div>
     `).join('');
   } else {
